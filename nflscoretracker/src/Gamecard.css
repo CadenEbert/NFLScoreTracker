@@ -1,35 +1,78 @@
 .game-card {
+  background: #fff;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  gap: 12px;
+}
+
+.game-info {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin: 10px 0;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
 }
 
-.team-section {
-  flex: 1;
-  text-align: center;
-}
 
 .team-name {
-  font-weight: bold;
-  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .score {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 36px;
+  font-weight: 700;
   color: #003366;
 }
 
 .vs {
-  color: #999;
+  font-size: 12px;
+  color: #7a8190;
+  text-transform: uppercase;
+ 
 }
 
 .status {
   font-size: 12px;
-  color: #666;
-  margin-left: 20px;
+  color: #7a8190;
+  padding-top: 12px;
+  border-top: 1px solid #e3e8ee;
+  width: 100%;
+  text-align: center;
+}
+
+
+.team-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-section {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  margin-left: auto;
+  gap: 12px;  
+  flex: 1;
+}
+
+.away-section {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  gap: 12px;  
+  flex: 1;
+}
+
+.team-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  flex-shrink: 0; 
 }

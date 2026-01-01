@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './Header';
-import ScoreList from './ScoreList';
+import Body from './Body';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Header />
       <main className="main-content">
-        <ScoreList />
+        <Body />
       </main>
       {/* Footer can be added here if needed */}
     </div>
