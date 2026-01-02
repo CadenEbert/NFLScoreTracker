@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import './styles/BoxScore.css';
 
@@ -105,5 +106,10 @@ function BoxScore({ gameId, onClose }) {
         </div>
     );
 }
+
+BoxScore.propTypes = {
+    gameId: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default BoxScore;
