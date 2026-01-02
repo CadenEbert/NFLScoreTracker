@@ -9,9 +9,9 @@ function Header() {
                 <h1>NFL Score Tracker</h1>
             </div>
             <nav className="nav">
-                <Link className="nav-link" to="/scoragami">Scoragami</Link>
+                <Link className="nav-link" to="/scorigami">Scorigami</Link>
                 <Link className="nav-link" to="/">Scores</Link>
-                <a className="nav-link" href="#teams">Teams</a>
+                
                 
                 
             </nav>
