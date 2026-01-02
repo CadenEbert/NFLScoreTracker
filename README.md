@@ -10,6 +10,17 @@ A React-based web application for tracking and analyzing NFL game scores, with a
 - **Data Caching**: Backend server caches game data to minimize API calls
 - **Responsive Design**: Modern UI with gradients and hover effects
 
+## Screenshots
+
+### Score List
+![Score List](images/scoretracker.png)
+
+### Scorigami Tracker
+![Scorigami Tracker](images/scorigami.png)
+
+### Box Score Details
+![Box Score Modal](images/boxscore.png)
+
 ## Tech Stack
 
 - **Frontend**: React 18+, React Router, Axios

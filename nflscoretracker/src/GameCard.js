@@ -24,7 +24,6 @@ function GameCard({ game }) {
                 className="game-card" 
                 onClick={() => setShowBoxScore(true)}
                 onKeyDown={(e) => e.key === 'Enter' && setShowBoxScore(true)}
-                role="button"
                 tabIndex={0}
                 aria-label="View box score details"
             >
