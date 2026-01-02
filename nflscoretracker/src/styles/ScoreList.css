@@ -1,23 +1,17 @@
 .loading {
   text-align: center;
-  padding: 48px;
-  color: var(--text-secondary);
-  font-size: 18px;
-  font-weight: 500;
+  padding: 24px;
+  color: #003366;
+  font-weight: 600;
 }
 
 .scores-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
-  max-width: 1400px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 1000px;
   margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .scores-list {
-    grid-template-columns: 1fr;
-  }
+  padding: 0 16px;
 }
 
 .filters {
@@ -26,32 +20,15 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 24px auto;
-  padding: 20px;
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  max-width: 1400px;
+  margin: 16px auto;
+  max-width: 1000px;
+  padding: 0 16px;
 }
 
 .filters select {
-  padding: 10px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  background: white;
+  padding: 8px 10px;
+  border: 1px solid #ccd3dd;
+  border-radius: 6px;
+  background: #fff;
   font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.filters select:hover {
-  border-color: var(--primary-color);
-}
-
-.filters select:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
 }
