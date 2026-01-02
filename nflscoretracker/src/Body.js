@@ -9,7 +9,6 @@ function Body() {
         <div className="body">
             
             <ScoreList />
-            {/* Body content can be added here if needed */}
         </div>
     );
 }

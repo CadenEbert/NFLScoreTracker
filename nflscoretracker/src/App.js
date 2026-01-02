@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Body from './Body';
-import Scoragami from './Scoragami';
+import Scorigami from './Scorigami';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Body />} />
-            <Route path="/scoragami" element={<Scoragami />} />
+            <Route path="/scorigami" element={<Scorigami />} />
           </Routes>
         </main>
       </div>

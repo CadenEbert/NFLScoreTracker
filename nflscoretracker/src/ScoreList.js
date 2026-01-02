@@ -7,7 +7,6 @@ function ScoreList() {
     const today = new Date();
     const defaultSeasonYear = today.getMonth() >= 8 ? today.getFullYear() : today.getFullYear() - 1;
     const [year, setYear] = useState(defaultSeasonYear);
-    const [seasonType, setSeasonType] = useState('all');
     const [week, setWeek] = useState('all');
     const [allScores, setAllScores] = useState([]);
     const [scores, setScores] = useState([]);
@@ -15,19 +14,21 @@ function ScoreList() {
     const [error, setError] = useState(null);
     const [retryCount, setRetryCount] = useState(0);
     const [seasonStartDate, setSeasonStartDate] = useState(null);
-    const [scoreData, setScoreData] = useState({});
-    
+    const [selectedTeam, setSelectedTeam] = useState('all');
+
+
+
     useEffect(() => {
         let isMounted = true;
 
         const fetchSeasonStart = async () => {
             try {
-                
+
                 const earlySeasonUrl = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=50&dates=${year}0901-${year}0920`;
                 const { data } = await axios.get(earlySeasonUrl);
-                
+
                 if (!isMounted) return;
-                
+
                 if (data.events && data.events.length > 0) {
                     const firstGame = data.events.reduce((earliest, game) => {
                         const gameDate = new Date(game.date);
@@ -48,35 +49,35 @@ function ScoreList() {
             isMounted = false;
         };
     }, [year]);
-    
+
     useEffect(() => {
         let isMounted = true;
 
         const fetchScores = async () => {
-            
+
             if (!seasonStartDate) return;
-            
+
             try {
                 setLoading(true);
                 setError(null);
-                
+
                 let startDate, endDate;
-                
+
                 if (week === 'all') {
                     startDate = `${year}0901`;
-                    endDate = `${Number(year) + 1}0301`;
+                    endDate = `${Number(year) + 1}0501`;
                 } else {
                     const weekNum = Number(week);
                     const weekStart = new Date(seasonStartDate);
                     weekStart.setDate(weekStart.getDate() + (weekNum - 1) * 7);
-                    
+
                     const weekEnd = new Date(weekStart);
                     weekEnd.setDate(weekEnd.getDate() + 6);
-                    
+
                     startDate = `${weekStart.getFullYear()}${String(weekStart.getMonth() + 1).padStart(2, '0')}${String(weekStart.getDate()).padStart(2, '0')}`;
                     endDate = `${weekEnd.getFullYear()}${String(weekEnd.getMonth() + 1).padStart(2, '0')}${String(weekEnd.getDate()).padStart(2, '0')}`;
                 }
-                
+
                 const url = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=400&dates=${startDate}-${endDate}`;
                 console.log({ year, startDate, endDate, url });
                 const { data } = await axios.get(url);
@@ -104,29 +105,26 @@ function ScoreList() {
         };
     }, [year, week, retryCount, seasonStartDate]);
 
-   
+
     useEffect(() => {
         let filtered = [...allScores];
 
         filtered = filtered.filter(game => {
-            const competition = game.competitions?.[0];
-            const gameSeasonType = competition?.week?.seasonType;
+            if (selectedTeam === 'all') return true;
             
-            // Filter by season type
-            if (seasonType !== 'all') {
-                const typeMap = { preseason: 1, regular: 2, postseason: 3 };
-                if (gameSeasonType !== typeMap[seasonType]) return false;
-            }
-
-            return true;
+            const competition = game.competitions?.[0];
+            const homeTeam = competition?.competitors?.find(t => t.homeAway === 'home')?.team?.abbreviation;
+            const awayTeam = competition?.competitors?.find(t => t.homeAway === 'away')?.team?.abbreviation;
+            
+            return homeTeam === selectedTeam || awayTeam === selectedTeam;
         });
 
         setScores(filtered);
-    }, [seasonType, allScores]);
+    }, [allScores, selectedTeam]);
 
     const years = Array.from({ length: 12 }, (_, i) => defaultSeasonYear - i);
 
-    
+
 
     if (loading) {
         return <div className="loading">Loading scores…</div>;
@@ -150,11 +148,41 @@ function ScoreList() {
                     ))}
                 </select>
 
-                <select value={seasonType} onChange={e => setSeasonType(e.target.value)}>
-                    <option value="all">All Seasons</option>
-                    <option value="preseason">Preseason</option>
-                    <option value="regular">Regular Season</option>
-                    <option value="postseason">Postseason</option>
+                <select value={selectedTeam} onChange={e => setSelectedTeam(e.target.value)}>
+                    <option value="all">All Teams</option>
+                    <option value="ARI">Arizona Cardinals</option>
+                    <option value="ATL">Atlanta Falcons</option>
+                    <option value="BAL">Baltimore Ravens</option>
+                    <option value="BUF">Buffalo Bills</option>
+                    <option value="CAR">Carolina Panthers</option>
+                    <option value="CHI">Chicago Bears</option>
+                    <option value="CIN">Cincinnati Bengals</option>
+                    <option value="CLE">Cleveland Browns</option>
+                    <option value="DAL">Dallas Cowboys</option>
+                    <option value="DEN">Denver Broncos</option>
+                    <option value="DET">Detroit Lions</option>
+                    <option value="GB">Green Bay Packers</option>
+                    <option value="HOU">Houston Texans</option>
+                    <option value="IND">Indianapolis Colts</option>
+                    <option value="JAX">Jacksonville Jaguars</option>
+                    <option value="KC">Kansas City Chiefs</option>
+                    <option value="LAC">Los Angeles Chargers</option>
+                    <option value="LAR">Los Angeles Rams</option>
+                    <option value="LV">Las Vegas Raiders</option>
+                    <option value="MIA">Miami Dolphins</option>
+                    <option value="MIN">Minnesota Vikings</option>
+                    <option value="NE">New England Patriots</option>
+                    <option value="NO">New Orleans Saints</option>
+                    <option value="NYG">New York Giants</option>
+                    <option value="NYJ">New York Jets</option>
+                    <option value="PHI">Philadelphia Eagles</option>
+                    <option value="PIT">Pittsburgh Steelers</option>
+                    <option value="SEA">Seattle Seahawks</option>
+                    <option value="SF">San Francisco 49ers</option>
+                    <option value="TB">Tampa Bay Buccaneers</option>
+                    <option value="TEN">Tennessee Titans</option>
+                    <option value="WAS">Washington Commanders</option>
+
                 </select>
 
                 <select value={week} onChange={e => setWeek(e.target.value)}>
