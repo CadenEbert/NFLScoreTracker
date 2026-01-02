@@ -25,8 +25,20 @@ function BoxScore({ gameId, onClose }) {
 
     if (loading) {
         return (
-            <div className="modal-backdrop" onClick={onClose}>
-                <div className="box-score-modal" onClick={(e) => e.stopPropagation()}>
+            <div 
+                className="modal-backdrop" 
+                onClick={onClose}
+                onKeyDown={(e) => e.key === 'Escape' && onClose()}
+                role="dialog"
+                aria-label="Box score modal"
+                aria-modal="true"
+                tabIndex={-1}
+            >
+                <div 
+                    className="box-score-modal" 
+                    onClick={(e) => e.stopPropagation()}
+                    role="document"
+                >
                     <div className="loading">Loading box score...</div>
                 </div>
             </div>
@@ -35,8 +47,20 @@ function BoxScore({ gameId, onClose }) {
 
     if (!boxScore) {
         return (
-            <div className="modal-backdrop" onClick={onClose}>
-                <div className="box-score-modal" onClick={(e) => e.stopPropagation()}>
+            <div 
+                className="modal-backdrop" 
+                onClick={onClose}
+                onKeyDown={(e) => e.key === 'Escape' && onClose()}
+                role="dialog"
+                aria-label="Box score modal"
+                aria-modal="true"
+                tabIndex={-1}
+            >
+                <div 
+                    className="box-score-modal" 
+                    onClick={(e) => e.stopPropagation()}
+                    role="document"
+                >
                     <div>No data available</div>
                     <button onClick={onClose}>Close</button>
                 </div>
@@ -55,8 +79,20 @@ function BoxScore({ gameId, onClose }) {
     });
 
     return (
-        <div className="modal-backdrop" onClick={onClose}>
-            <div className="box-score-modal" onClick={(e) => e.stopPropagation()}>
+        <div 
+            className="modal-backdrop" 
+            onClick={onClose}
+            onKeyDown={(e) => e.key === 'Escape' && onClose()}
+            role="dialog"
+            aria-label="Box score modal"
+            aria-modal="true"
+            tabIndex={-1}
+        >
+            <div 
+                className="box-score-modal" 
+                onClick={(e) => e.stopPropagation()}
+                role="document"
+            >
                 <div className="modal-header">
                     <h2>Box Score</h2>
                     <button className="close-btn" onClick={onClose}>✕</button>

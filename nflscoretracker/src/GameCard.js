@@ -20,7 +20,14 @@ function GameCard({ game }) {
 
     return (
         <>
-            <div className="game-card" onClick={() => setShowBoxScore(true)}>
+            <div 
+                className="game-card" 
+                onClick={() => setShowBoxScore(true)}
+                onKeyDown={(e) => e.key === 'Enter' && setShowBoxScore(true)}
+                role="button"
+                tabIndex={0}
+                aria-label="View box score details"
+            >
                 <div className="game-info">
                     <div className="away-section">
                         <img src={awayTeam.team.logo} alt={awayTeam.team.displayName} className="team-logo" />

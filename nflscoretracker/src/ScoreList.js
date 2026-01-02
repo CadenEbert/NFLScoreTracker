@@ -89,12 +89,14 @@ function ScoreList() {
                 console.log('URL:', url);
                 console.log('events:', data.events?.length);
             } catch (err) {
-                if (!isMounted) return;
                 console.error('Error fetching scores:', err);
-                setError('Failed to fetch scores.');
+                if (isMounted) {
+                    setError('Failed to fetch scores.');
+                }
             } finally {
-                if (!isMounted) return;
-                setLoading(false);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
         };
 
