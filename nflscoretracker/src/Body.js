@@ -1,5 +1,5 @@
 import ScoreList from "./ScoreList";
-import './Body.css';
+import './styles/Body.css';
 import React from "react";
 
 

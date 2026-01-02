@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './ScoreList.css';
+import './styles/ScoreList.css';
 import GameCard from './GameCard';
 
 function ScoreList() {
@@ -15,7 +15,7 @@ function ScoreList() {
     const [error, setError] = useState(null);
     const [retryCount, setRetryCount] = useState(0);
     const [seasonStartDate, setSeasonStartDate] = useState(null);
-    
+    const [scoreData, setScoreData] = useState({});
     
     useEffect(() => {
         let isMounted = true;
@@ -53,7 +53,7 @@ function ScoreList() {
         let isMounted = true;
 
         const fetchScores = async () => {
-            // Wait for season start date to be fetched
+            
             if (!seasonStartDate) return;
             
             try {
@@ -176,6 +176,7 @@ function ScoreList() {
                     <option value="15">Week 15</option>
                     <option value="16">Week 16</option>
                     <option value="17">Week 17</option>
+                    <option value="18">Week 18</option>
                 </select>
             </div>
 

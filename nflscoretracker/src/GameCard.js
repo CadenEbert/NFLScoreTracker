@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './Gamecard.css';
+import './styles/Gamecard.css';
 
 function GameCard({ game }) {
 
